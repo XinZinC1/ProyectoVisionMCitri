@@ -19,6 +19,7 @@ factor_luces = 1.05  # Ajusta las altas luces (1.0 = sin cambios)
 factor_sombras = 1.05 # Ajusta las sombras (1.0 = sin cambios
 factor_nitidez = 0.15  # Ajusta la nitidez (1.0 = sin cambios)
 
+
 # Itera sobre los archivos en la carpeta
 for archivo_base in os.listdir(ruta_folder):
     if archivo_base.endswith(".jpg") or archivo_base.endswith(".png"):
@@ -54,3 +55,5 @@ for archivo_base in os.listdir(ruta_folder):
         imagen_base.save(nuevo_ruta_archivo)
         
         print(f"Imagen editada: {nuevo_nombre_archivo}")
+
+#Hola mundo de prueba
