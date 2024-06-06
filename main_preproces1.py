@@ -50,48 +50,46 @@ def adjust_image():
     for filename in os.listdir(carpeta_imagenes):
         if filename.endswith(".jpg") or filename.endswith(".png"):
             # Construye la ruta completa del archivo
-            file_path = os.path.join(carpeta_imagenes, filename)
+            ruta_archivo = os.path.join(carpeta_imagenes, filename)
             
             # Abre la imagen
-            image = Image.open(file_path)
+            imagen = Image.open(ruta_archivo)
             
             # Ajusta el brillo
-            brightness_enhancer = ImageEnhance.Brightness(image)
-            image = brightness_enhancer.enhance(brillo)
+            ajuste_brillo = ImageEnhance.Brightness(imagen)
+            imagen = ajuste_brillo.enhance(brillo)
             
             # Ajusta el contraste
-            contrast_enhancer = ImageEnhance.Contrast(image)
-            image = contrast_enhancer.enhance(contraste)
+            ajuste_contraste = ImageEnhance.Contrast(imagen)
+            imagen = ajuste_contraste.enhance(contraste)
             
             # Ajusta las altas luces
-            highlights_enhancer = ImageEnhance.Brightness(image)
-            image = highlights_enhancer.enhance(altas_luces)
+            ajuste_altasluces = ImageEnhance.Brightness(imagen)
+            imagen = ajuste_altasluces.enhance(altas_luces)
             
             # Ajusta las sombras
-            shadows_enhancer = ImageEnhance.Brightness(image)
-            image = shadows_enhancer.enhance(sombras)
+            ajuste_sombra = ImageEnhance.Brightness(imagen)
+            imagen = ajuste_sombra.enhance(sombras)
             
             # Ajusta la nitidez
-            sharpness_enhancer = ImageEnhance.Sharpness(image)
-            image = sharpness_enhancer.enhance(nitidez)
+            ajuste_nitidez = ImageEnhance.Sharpness(imagen)
+            imagen = ajuste_nitidez.enhance(nitidez)
             
             # Guarda la imagen editada con un nuevo nombre
-            new_filename = f"edit_{filename}"
-            new_file_path = os.path.join(carpeta_final, new_filename)
-            image.save(new_file_path)
-
-
+            nuevo_nombre = f"edit_{filename}"
+            nueva_ruta = os.path.join(carpeta_final, nuevo_nombre)
+            imagen.save(nueva_ruta)
 
 # Ejecuta las funciones secuencialmente
 for i in tqdm(range(1)):
     flip_image()
-    sleep(0.001)
+    sleep(0.1)
     print(" Horizontal flip aplicado.")
 for i in tqdm(range(1)):
     apply_hpf_filter()
-    sleep(0.001)
+    sleep(0.1)
     print(" HPF aplicado.")
 for i in tqdm(range(1)):
     adjust_image()
-    sleep(0.001)
+    sleep(0.1)
     print(" Ajuste de imagenes culminado.")
