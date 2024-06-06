@@ -6,9 +6,7 @@ import numpy as np
 from tqdm import tqdm
 from time import sleep
 
-
-# Función para aplicar random horizontal flipping
-def flip_image():
+def aplica_horizontal_flip():
     carpeta = r'HOJAS'
     for filename in os.listdir(carpeta):
         if filename.endswith('.jpg') or filename.endswith('.png'):
@@ -16,7 +14,8 @@ def flip_image():
             imagen = Image.open(ruta)
             imagen_flip = ImageOps.mirror(imagen)
             imagen_flip.save(os.path.join(carpeta, 'flip_' + os.path.basename(ruta)))
-def apply_hpf_filter():
+
+def aplica_hpf():
     carpeta_imagenes = r"HOJAS"
     # Itera sobre los archivos en la carpeta
     for filename in os.listdir(carpeta_imagenes):
@@ -36,7 +35,7 @@ def apply_hpf_filter():
             nuevo_ruta = os.path.join(carpeta_imagenes, nombre_imagen)
             cv2.imwrite(nuevo_ruta, imagen)
 
-def adjust_image():
+def ajuste_imagen():
     carpeta_imagenes = r"HOJAS"
     carpeta_final=r"AJUSTE"
     # Parámetros de edición
@@ -80,16 +79,46 @@ def adjust_image():
             nueva_ruta = os.path.join(carpeta_final, nuevo_nombre)
             imagen.save(nueva_ruta)
 
+def aplica_sobel():
+    ruta = r"HOJAS"
+    ruta_salida=r"SOBEL"
+    # Itera sobre los archivos en la carpeta
+    for filename in os.listdir(ruta):
+        if filename.endswith(".jpg") or filename.endswith(".png"):
+            # Construye la ruta completa del archivo
+            ruta_imagen = os.path.join(ruta, filename)
+            
+            # Abre la imagen
+            imagen = cv2.imread(ruta_imagen)
+            
+            # Aplica el filtro de Sobel para detectar bordes verticales
+            bordes_verticales = cv2.Sobel(imagen, cv2.CV_8U, 1, 0, ksize=3)
+            
+            # Aplica el filtro de Sobel para detectar bordes horizontales
+            bordes_horizontales = cv2.Sobel(imagen, cv2.CV_8U, 0, 1, ksize=3)
+            
+            # Combina los resultados para obtener la imagen con bordes detectados
+            gradiente = cv2.bitwise_or(bordes_verticales, bordes_horizontales)
+            
+            # Guarda la imagen editada con un nuevo nombre
+            nuevo_nombre = f"_{filename}"
+            nueva_ruta = os.path.join(ruta_salida, nuevo_nombre)
+            cv2.imwrite(nueva_ruta, gradiente)
+            
 # Ejecuta las funciones secuencialmente
 for i in tqdm(range(1)):
-    flip_image()
+    aplica_horizontal_flip()
     sleep(0.1)
     print(" Horizontal flip aplicado.")
 for i in tqdm(range(1)):
-    apply_hpf_filter()
+    aplica_hpf()
     sleep(0.1)
     print(" HPF aplicado.")
 for i in tqdm(range(1)):
-    adjust_image()
+    ajuste_imagen()
+    sleep(0.1)
+    print(" Ajuste de imagenes culminado.")
+for i in tqdm(range(1)):
+    aplica_sobel()
     sleep(0.1)
     print(" Ajuste de imagenes culminado.")
