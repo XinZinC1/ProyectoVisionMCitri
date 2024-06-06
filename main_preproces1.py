@@ -55,5 +55,3 @@ for archivo_base in os.listdir(ruta_folder):
         imagen_base.save(nuevo_ruta_archivo)
         
         print(f"Imagen editada: {nuevo_nombre_archivo}")
-
-#Hola mundo de prueba
