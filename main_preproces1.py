@@ -3,10 +3,13 @@ import random
 import cv2
 import os
 import numpy as np
+from tqdm import tqdm
+from time import sleep
+
 
 # Función para aplicar random horizontal flipping
 def flip_image():
-    image_folder = r'C:\Users\aguir\Documentos\MC\ProyectoVisionMCitri\HOJAS'
+    image_folder = r'HOJAS'
     for filename in os.listdir(image_folder):
         if filename.endswith('.jpg') or filename.endswith('.png'):
             image_path = os.path.join(image_folder, filename)
@@ -14,7 +17,7 @@ def flip_image():
             flipped_image = ImageOps.mirror(image)
             flipped_image.save(os.path.join(image_folder, '1' + os.path.basename(image_path)))
 def apply_hpf_filter():
-    folder_path = r"C:\Users\aguir\Documentos\MC\ProyectoVisionMCitri\HOJAS"
+    folder_path = r"HOJAS"
     # Itera sobre los archivos en la carpeta
     for filename in os.listdir(folder_path):
         if filename.endswith(".jpg") or filename.endswith(".png"):
@@ -34,8 +37,8 @@ def apply_hpf_filter():
             cv2.imwrite(new_file_path, image)
 
 def adjust_image():
-    folder_path = r"C:\Users\aguir\Documentos\MC\ProyectoVisionMCitri\HOJAS"
-    output_folder1=r"C:\Users\aguir\Documentos\MC\ProyectoVisionMCitri\AJUSTE"
+    folder_path = r"HOJAS"
+    output_folder1=r"AJUSTE"
     # Parámetros de edición
     brightness_factor = 1.25  # Ajusta el brillo (1.0 = sin cambios)
     contrast_factor = 1.05  # Ajusta el contraste (1.0 = sin cambios)
@@ -80,7 +83,15 @@ def adjust_image():
 
 
 # Ejecuta las funciones secuencialmente
-flip_image()
-apply_hpf_filter()
-adjust_image()
-print("Fotos editadas.")
+for i in tqdm(range(10)):
+    flip_image()
+    sleep(0.2)
+    print("Horizontal flip aplicado.")
+for i in tqdm(range(10)):
+    apply_hpf_filter()
+    sleep(0.2)
+    print("HPF aplicado.")
+for i in tqdm(range(10)):
+    adjust_image()
+    sleep(0.2)
+    print("Ajuste de imagenes culminado.")
