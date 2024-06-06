@@ -101,10 +101,10 @@ def aplica_sobel():
             gradiente = cv2.bitwise_or(bordes_verticales, bordes_horizontales)
             
             # Guarda la imagen editada con un nuevo nombre
-            nuevo_nombre = f"_{filename}"
+            nuevo_nombre = f"sobel_{filename}"
             nueva_ruta = os.path.join(ruta_salida, nuevo_nombre)
             cv2.imwrite(nueva_ruta, gradiente)
-            
+
 # Ejecuta las funciones secuencialmente
 for i in tqdm(range(1)):
     aplica_horizontal_flip()
