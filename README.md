@@ -7,3 +7,8 @@ hojas de mandarina sanas y enfermas.
 Lenguaje de programación: Python
 Librerías: colorama, numpy, opencv-python, pandas, pillow, pip, python-dateutil, pytz, six, tqdm, tzdata
 Entorno de trabajo: Visual Studio Code
+
+
+###Autores
+Aguirre Ramos Hector
+Zamata Cangalaya Xiang
