@@ -4,10 +4,9 @@ hongo Mycosphaerella Citri en las hojas de mandarina. El modelo está entrenado 
 hojas de mandarina sanas y enfermas.
 
 ###Tecnologías utilizadas
-Lenguaje de programación: Python
-Librerías: colorama, numpy, opencv-python, pandas, pillow, pip, python-dateutil, pytz, six, tqdm, tzdata
-Entorno de trabajo: Visual Studio Code
-
+#Lenguaje de programación: Python
+#Librerías: colorama, numpy, opencv-python, pandas, pillow, pip, python-dateutil, pytz, six, tqdm, tzdata
+#Entorno de trabajo: Visual Studio Code
 
 ###Autores
 Aguirre Ramos Hector
