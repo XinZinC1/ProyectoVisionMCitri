@@ -5,5 +5,5 @@ hojas de mandarina sanas y enfermas.
 
 ###Tecnologías utilizadas
 Lenguaje de programación: Python
-Librerías: 
+Librerías: colorama, numpy, opencv-python, pandas, pillow, pip, python-dateutil, pytz, six, tqdm, tzdata
 Entorno de trabajo: Visual Studio Code
