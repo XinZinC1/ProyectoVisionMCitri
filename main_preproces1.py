@@ -121,4 +121,4 @@ for i in tqdm(range(1)):
 for i in tqdm(range(1)):
     aplica_sobel()
     sleep(0.1)
-    print(" Ajuste de imagenes culminado.")
+    print(" Filtro de Sobel aplicado")
